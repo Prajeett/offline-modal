@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     max_tokens_hard_cap: int = 900
     request_timeout_seconds: int = 300
 
-    auth_shared_bearer_token: str = "AUTH_SHARED_BEARER_TOKEN
+    auth_shared_bearer_token: str = "replace_me"
     cors_allowed_origins: str = "http://localhost,https://sydaux.com,https://www.sydaux.com"
 
     search_scope_mode: str = "open"

@@ -45,7 +45,18 @@ async def simple_web_search(
 ) -> list[SearchResult]:
     # Use the html subdomain directly to avoid 302 redirect failures.
     endpoint = "https://html.duckduckgo.com/html/"
-    async with httpx.AsyncClient(timeout=12, follow_redirects=True) as client:
+    async with httpx.AsyncClient(
+        timeout=12,
+        follow_redirects=True,
+        trust_env=False,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/124.0.0.0 Safari/537.36"
+            )
+        },
+    ) as client:
         resp = await client.post(endpoint, data={"q": query})
         resp.raise_for_status()
         html = resp.text
